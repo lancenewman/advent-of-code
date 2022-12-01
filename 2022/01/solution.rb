@@ -1,0 +1,2 @@
+puts "Part 1: #{File.readlines("input.txt", "\n\n").map{ |s| s.rstrip.split("\n").map(&:to_i).sum }.sort.last}"
+puts "Part 2: #{File.readlines("input.txt", "\n\n").map{ |s| s.rstrip.split("\n").map(&:to_i).sum }.sort.last(3).sum}"
