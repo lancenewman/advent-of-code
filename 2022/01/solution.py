@@ -6,7 +6,6 @@ def solve(file):
     with open(file) as input_file:
         for line in input_file:
             if line.strip():
-                print(line.rstrip())
                 current_calories = current_calories + int(line)
             else:
                 bisect.insort(top_three_calories, current_calories)
