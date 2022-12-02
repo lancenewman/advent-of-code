@@ -14,9 +14,10 @@ def solve(file):
         bisect.insort(top_three_calories, current_calories)
         top_three_calories = top_three_calories[-3:]
 
-    print(top_three_calories)
-    return sum(top_three_calories)
+    return top_three_calories
 
 
 if __name__ == '__main__':
-    print(solve('input.txt'))
+    top_three = solve('input.txt')
+    print(f'Part 1: {max(top_three)}')
+    print(f'Part 2: {sum(top_three)}')
