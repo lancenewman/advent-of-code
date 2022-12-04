@@ -1,6 +1,3 @@
-from lib2to3.pytree import convert
-
-
 def convert_ascii_to_priority(character):
     # a-z are ascii values 97-122, so transform them to 1-26 by subtracting 97.
     # A-Z are ascii values 65-90, so transform them to 27-52 by subtracting 38.
@@ -13,7 +10,6 @@ def get_common_item_priority(rucksack):
     common_item = ''.join(set(compartment1).intersection(compartment2))
     return convert_ascii_to_priority(common_item)
     
-
 
 def get_group_badge_priority(group):
     common_badge = ''.join(set(group[0]).intersection(group[1], group[2]))
