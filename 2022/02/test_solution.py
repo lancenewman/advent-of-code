@@ -39,6 +39,6 @@ class TestEvaluateRoundPart2(unittest.TestCase):
 
 class TestSolve(unittest.TestCase):
 
-    def test_file(self):
+    def test_with_file(self):
         file = "test.txt"
         self.assertEqual((15, 12), solution.solve(file))

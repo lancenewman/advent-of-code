@@ -29,7 +29,6 @@ def evaluate_round_part_1(elf_move, my_move):
 def evaluate_round_part_2(elf_move, outcome):
     LOSE = "X"
     DRAW = "Y"
-    WIN = "Z"
 
     move_values = {
         "A": 1,
