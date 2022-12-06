@@ -1,30 +1,33 @@
-def extract_integer_bounds(assignment, delimiter='-'):
+from typing import List, Tuple
+
+
+def extract_integer_bounds(assignment: str, delimiter: str = '-') -> List[int]:
     return [int(bound) for bound in assignment.split(delimiter)]
 
 
-def assignment_fully_covered(a1, a2, delimiter='-'):
+def assignment_fully_covered(a1: str, a2: str, delimiter: str = '-') -> bool:
     a1_lower_bound, a1_upper_bound = extract_integer_bounds(a1, delimiter)
     a2_lower_bound, a2_upper_bound = extract_integer_bounds(a2, delimiter)
     return a1_lower_bound <= a2_lower_bound and a1_upper_bound >= a2_upper_bound
 
 
-def assignment_partially_covered(a1, a2, delimiter='-'):
+def assignment_partially_covered(a1: str, a2: str, delimiter: str = '-') -> bool:
     a1_lower_bound, a1_upper_bound = extract_integer_bounds(a1, delimiter)
     a2_lower_bound, a2_upper_bound = extract_integer_bounds(a2, delimiter)
     return a1_lower_bound <= a2_lower_bound <= a1_upper_bound or a2_lower_bound >= a1_upper_bound >= a2_upper_bound
 
 
-def contains_partially_covered_section(assignments, delimiter=','):
+def contains_partially_covered_section(assignments: str, delimiter: str = ',') -> bool:
     a1, a2 = assignments.split(delimiter)
     return assignment_partially_covered(a1, a2) or assignment_partially_covered(a2, a1)
 
 
-def contains_fully_covered_section(assignments, delimiter=','):
+def contains_fully_covered_section(assignments: str, delimiter: str = ',') -> bool:
     a1, a2 = assignments.split(delimiter)
     return assignment_fully_covered(a1, a2) or assignment_fully_covered(a2, a1)
 
 
-def solve(file):
+def solve(file: str) -> Tuple[int,int]:
     with open(file, 'r') as input:
         fully_covered_sections = 0
         partially_covered_sections = 0

@@ -4,7 +4,7 @@ def is_unique(string: str) -> bool:
     return len(set(string)) == len(string)
 
 
-def find_start_of_unique_sequence_in_signal(signal, window_size):
+def find_start_of_unique_sequence_in_signal(signal: str, window_size: int) -> int:
     for i in range(len(signal) - window_size + 1):
         if is_unique(signal[i:i+window_size]):
             return i + window_size
@@ -18,7 +18,7 @@ def find_start_of_packet(signal: str) -> int:
     return find_start_of_unique_sequence_in_signal(signal, 4)
         
 
-def solve(file: str) -> Tuple[int,None]:
+def solve(file: str) -> Tuple[int,int]:
     with open(file, 'r') as input:
         signal = input.read()
 

@@ -1,6 +1,8 @@
 import bisect
+from typing import List
 
-def solve(file):
+
+def solve(file: str) -> List[int]:
     current_calories = 0
     top_three_calories = [0, 0, 0]
     with open(file) as input_file:

@@ -1,22 +1,25 @@
-def convert_ascii_to_priority(character):
+from typing import List, Tuple
+
+
+def convert_ascii_to_priority(character: str) -> int:
     # a-z are ascii values 97-122, so transform them to 1-26 by subtracting 97.
     # A-Z are ascii values 65-90, so transform them to 27-52 by subtracting 38.
     return ord(character) - 96 if character.islower() else ord(character) - 38
 
 
-def get_common_item_priority(rucksack):
+def get_common_item_priority(rucksack: str) -> int:
     compartment1 = rucksack[:len(rucksack) // 2]
     compartment2 = rucksack[len(rucksack) // 2:]
     common_item = ''.join(set(compartment1).intersection(compartment2))
     return convert_ascii_to_priority(common_item)
     
 
-def get_group_badge_priority(group):
+def get_group_badge_priority(group: List[str]) -> int:
     common_badge = ''.join(set(group[0]).intersection(group[1], group[2]))
     return convert_ascii_to_priority(common_badge)
 
 
-def solve(file):
+def solve(file: str) -> Tuple[int,int]:
     with open(file, 'r') as input:
         total_rucksack_priority = 0
         total_badge_priority = 0

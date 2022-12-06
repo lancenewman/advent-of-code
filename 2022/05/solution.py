@@ -1,4 +1,7 @@
-def parse_crate_stacks(crate_stacks_string):
+from typing import Dict, List, Tuple
+
+
+def parse_crate_stacks(crate_stacks_string: str) -> List[List[str]]:
     lines = crate_stacks_string.split('\n')
     rows = []
     for line in lines:
@@ -20,7 +23,7 @@ def parse_crate_stacks(crate_stacks_string):
     return stacks
 
         
-def parse_moves(moves_string):
+def parse_moves(moves_string: str) -> List[Dict[str,int]]:
     moves = []
     for instruction in moves_string.split('\n'):
         instruction_words = instruction.split()
@@ -33,7 +36,7 @@ def parse_moves(moves_string):
     return moves
 
 
-def move_crates(starting_crate_stacks, moves, crane_version='9000'):
+def move_crates(starting_crate_stacks: List[List[str]], moves: List[Dict[str,int]], crane_version: str='9000') -> List[List[str]]:
     for move in moves:
         amount = move['amount']
         origin = move['from']
@@ -51,11 +54,11 @@ def move_crates(starting_crate_stacks, moves, crane_version='9000'):
     return starting_crate_stacks
 
 
-def get_top_crates_string(crate_stacks):
+def get_top_crates_string(crate_stacks: List[List[str]]) -> str:
     return ''.join([stack[-1] for stack in crate_stacks])
     
 
-def solve(file):
+def solve(file: str) -> Tuple[str,str]:
     with open(file, 'r') as input:
         crate_string, move_string = input.read().split('\n\n')
         moves = parse_moves(move_string)

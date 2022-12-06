@@ -1,4 +1,7 @@
-def evaluate_round_part_1(elf_move, my_move):
+from typing import Tuple
+
+
+def evaluate_round_part_1(elf_move: str, my_move: str) -> int:
     lose_conditions = {
         "A": "Z",
         "B": "X",
@@ -26,7 +29,7 @@ def evaluate_round_part_1(elf_move, my_move):
     else:
         return my_score + 6
 
-def evaluate_round_part_2(elf_move, outcome):
+def evaluate_round_part_2(elf_move: str, outcome: str) -> int:
     LOSE = "X"
     DRAW = "Y"
 
@@ -55,7 +58,7 @@ def evaluate_round_part_2(elf_move, outcome):
     else:
         return win_map[elf_move] + 6
 
-def solve(file):
+def solve(file: str) -> Tuple[int,int]:
     part_1_score = 0
     part_2_score = 0
     with open(file) as input:
