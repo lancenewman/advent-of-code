@@ -3,7 +3,7 @@ from typing import List, Tuple
 
 def calculate_scenic_score(target: int, subset: List[int]) -> int:
     score = 0
-    for i, elem in enumerate(subset):
+    for elem in subset:
         score = score + 1
         if elem >= target:
             break
