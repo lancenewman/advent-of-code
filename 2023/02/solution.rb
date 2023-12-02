@@ -34,28 +34,45 @@ def get_dice(game)
   res
 end
 
-def valid_selection?(handfull)
-  handfull.all? do |dice|
+def valid_selection?(handfulls)
+  handfulls.all? do |dice|
     dice[:red] <= DICE_LIMITS[:red] && 
     dice[:green] <= DICE_LIMITS[:green] && 
     dice[:blue] <= DICE_LIMITS[:blue]
   end
 end
 
-def min_dice(dice)
-  dice.each do |handfull|
-
+def get_min(handfulls, color)
+  # The minimum dice required for a given color is the maximum pulled in any one handfull
+  max = 0
+  handfulls.each do |handfull|
+    if handfull[color] > max
+      max = handfull[color]
+    end
   end
+  max
+end
+
+def get_power(handfulls)
+  get_min(handfulls, :red) * get_min(handfulls, :green) * get_min(handfulls, :blue)
 end
 
 input = File.readlines("input.txt")
-sum = 0
+id_sum = 0
+power_sum = 0
+
 input.each do |line|
   game = get_game(line)
   handfulls = game.map { |handfull| get_dice(handfull) }
-  puts handfulls
+
+  # Part 1
   if valid_selection?(handfulls)
-    sum = sum + get_id(line)
+    id_sum = id_sum + get_id(line)
   end
+  
+  # Part 2
+  power_sum = power_sum + get_power(handfulls)
 end
-puts "Part 1: #{sum}"
+
+puts "Part 1: #{id_sum}"
+puts "Part 2: #{power_sum}"
