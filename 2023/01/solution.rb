@@ -1,12 +1,36 @@
-original_lines = File.readlines("part_2_test.txt")
+LINES = File.readlines("input.txt")
 
-def get_sum(lines)
+def part_1
   sum = 0
-  lines.each do |line|
+  LINES.each do |line|
     nums = line.delete "^0-9"
     sum = sum + "#{nums[0]}#{nums[-1]}".to_i
   end
   sum
 end
 
-puts "Part 1: #{get_sum(original_lines)}"
+puts "Part 1: #{part_1}"
+
+NUMBER_HASH = {
+  "zero" => 0,
+  "one" => 1,
+  "two" => 2,
+  "three" => 3,
+  "four" => 4,
+  "five" => 5,
+  "six" => 6,
+  "seven" => 7,
+  "eight" => 8,
+  "nine" => 9,
+}.freeze
+
+def part_2
+  regex = /(?=(\d|#{NUMBER_HASH.keys.join('|')}))/
+
+  nums = LINES.map do |line|
+    line.scan(regex).values_at(0, -1).flatten.map { |num| NUMBER_HASH[num] || num }.join.to_i
+  end
+  nums.sum
+end
+
+puts "Part 2: #{part_2}"
