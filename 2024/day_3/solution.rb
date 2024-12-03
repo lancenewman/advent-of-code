@@ -16,13 +16,11 @@ def part_2(memory)
     # The first element of this array is always disabled because it immediately
     # follows a don't() instruction. If there's only one element, then the
     # entire fragment is disabled.
-    fragment_parts = fragment.split("do()")
+    fragment_parts = fragment.split("do()", 2)
     next if fragment_parts.size <= 1
 
-    # Everything else is operable because it follows a do() instruction.
-    fragment_parts[1..-1].each do |operable_fragment|
-      operable_memory += operable_fragment
-    end
+    # We split on don't() originally, so everything after the first do() is operable
+    operable_memory += fragment_parts[1]
   end
 
   # Now that we've reconstructed memory to only include operable statements, 
